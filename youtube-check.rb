@@ -18,9 +18,7 @@ def check_url(url)
     puts "Exception: #{e}"
   end
 end
-def remove_dot(url)
 
-end
 Yt.configuration.api_key = 'AIzaSyD4yxJVdNhsKJiPtXCPv6-2xqTRQ0cjyq4'
 channel = Yt::Channel.new id: 'UCReIdTavsve16EJlilnTPNg'
 videos=channel.videos
