@@ -20,18 +20,27 @@ def check_url(url)
 end
 
 Yt.configuration.api_key = 'AIzaSyD4yxJVdNhsKJiPtXCPv6-2xqTRQ0cjyq4'
-channel = Yt::Channel.new id: 'UCReIdTavsve16EJlilnTPNg'
-videos=channel.videos
+items = Yt::Playlist.new(id: 'UUReIdTavsve16EJlilnTPNg').playlist_items
 array_video=[]
-videos.each do |video|
-  urls = URI.extract(video.description, ['http', 'https'])
-  array_video.concat(urls)
+items.each do |item|
+  urls = URI.extract(item.description, ['http', 'https'])
+  urls.each do |url|
+    @item_array=[]
+    print "#{url}  "
+    unless check_url(url)==200
+      @item_array << item.title
+      @item_array << url
+    end
+  end
+  return if @item_array.nil?
+  array_video.concat(@item_array)
 end
 
 # array_video.each do |video|
 #   print "#{video}  "
 #   check_url(video)
 # end
+
 pp array_video
 p array_video.count
-p videos.count
+p items.count
