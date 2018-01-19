@@ -28,18 +28,19 @@ Yt.configuration.api_key = 'AIzaSyD4yxJVdNhsKJiPtXCPv6-2xqTRQ0cjyq4'
 items = Yt::Playlist.new(id: 'UUReIdTavsve16EJlilnTPNg').playlist_items
 array_video=[]
 items.each do |item|
+  @item_array=[]
   urls = URI.extract(item.description, ['http', 'https'])
   urls.each do |url|
-    @item_array=[]
     print "#{url}  "
     unless check_url(url)==200
       if @item_array.empty?
         @item_array << item.title
+        @item_array << "https://www.youtube.com/watch?v=#{item.video_id}"
       end
       @item_array << url
     end
   end
-  return if @item_array.empty?
+  unless @item_array.empty?
   array_video.concat(@item_array)
 end
 
@@ -48,6 +49,11 @@ end
 #   check_url(video)
 # end
 
-pp array_video
-p array_video.count
-#p items.count
+# pp array_video
+# p array_video.count
+# this=[]
+# items.each do |item|
+#   this << item.video_id
+# end
+# pp this
+# p this.count
