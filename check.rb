@@ -1,8 +1,8 @@
 require 'pp'
 require 'csv'
-load '/load/check_url.rb'
-load '/load/API.rb'
-load '/load/check-302.rb'
+load 'load/check_url.rb'
+load 'load/API.rb'
+load 'load/check-302.rb'
 
 array_video=[]
 @items.each do |item|
@@ -31,6 +31,6 @@ array_video=[]
   end
 end
 
-CSV.open('/csv/check.csv', 'w') do |csv|
+CSV.open('csv/check.csv', 'w') do |csv|
   csv << array_video
 end
