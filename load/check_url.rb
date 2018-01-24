@@ -9,7 +9,7 @@ def check_url(url)
     req.use_ssl = true if url.scheme == 'https'
     @res = req.request_head(url.path)
     if @res.code == "301"
-      response = open(url).read
+      # response = open(url).read
       @res = Net::HTTP.get_response(URI.parse(@res.header['location']))
     end
     puts @res.code
@@ -17,3 +17,4 @@ def check_url(url)
     puts "Exception: #{e}"
   end
 end
+# check_url('http://goo.gl/Wzh9i3')
