@@ -2,7 +2,7 @@ require 'pp'
 require 'csv'
 load 'load/check_url.rb'
 load 'load/API.rb'
-load 'load/check-302.rb'
+load 'load/fetch.rb'
 
 array_video=[]
 @items.each do |item|
@@ -11,9 +11,9 @@ array_video=[]
   urls.each do |url|
     print "#{url}  "
     check_url(url)
-    unless url == "http://goo.gl/f3ZGJ8"
+    unless ((url == "http://www.ilovepasta.com.tw/") || (url == "http://goo.gl/6tQLzF"))
     if @res.code == "302"
-      url = UrlResolver.resolve(url)
+      url = fetch(url)
       check_url(url)
     end
     unless @res.code == "200"
