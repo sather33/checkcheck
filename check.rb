@@ -1,9 +1,8 @@
-require 'pp'
 require 'csv'
 load 'load/API.rb'
 load 'load/fetch.rb'
-load 'load/clean-csv.rb'
 
+File.open('csv/get-url.csv', 'w') {|file| file.truncate(0) }
 
 @items.each do |item|
   item_array=[]
@@ -21,7 +20,7 @@ load 'load/clean-csv.rb'
   end
   unless item_array.empty?
     item_array << " "
-    CSV.open('csv/check.csv', 'a') do |csv|
+    CSV.open('csv/get-url.csv', 'a') do |csv|
       csv << item_array
     end
   end
